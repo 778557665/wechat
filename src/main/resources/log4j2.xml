@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Log4j 2.x 配置文件。每30秒自动检查和应用配置文件的更新； -->
+<Configuration status="INFO" monitorInterval="30">
+    <Properties>
+        <Property name="baseDir">./logs</Property>
+    </Properties>
+    <Appenders>
+        <!-- 输出到控制台 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 需要记录的级别 -->
+            <!-- <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" /> -->
+            <PatternLayout pattern="%d{DEFAULT}:[%4p] [%t] [%logger.%M][%L] - %msg%n"/>
+        </Console>
+
+        <!-- 主日志文件，按天分割,仅保留近3天的log -->
+        <RollingRandomAccessFile name="mainFile" fileName="${baseDir}/main.log"
+                                 filePattern="${baseDir}/$${date:yyyy-MM}/main-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false">
+            <!-- 需要记录的级别 -->
+            <!-- <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" /> -->
+            <PatternLayout pattern="%d{DEFAULT}:[%4p] [%t] [%logger.%M][%L] - %msg%n"/>
+            <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}" maxDepth="2">
+                    <IfFileName glob="*/main-*.log.gz"/>
+                    <IfLastModified age="3d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+        <!-- sql日志文件，按天分割,仅保留近3天的log -->
+        <RollingRandomAccessFile name="sqlFile" fileName="${baseDir}/sql.log"
+                                 filePattern="${baseDir}/$${date:yyyy-MM}/sql-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false">
+            <!-- 需要记录的级别 -->
+            <!-- <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" /> -->
+            <PatternLayout pattern="%d{DEFAULT}:[%4p] [%t] [%logger.%M][%L] - %msg%n"/>
+            <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}" maxDepth="2">
+                    <IfFileName glob="*/sql-*.log.gz"/>
+                    <IfLastModified age="3d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+
+        <!-- mq日志文件，按天分割,仅保留近3天的log -->
+        <RollingRandomAccessFile name="httpFile" fileName="${baseDir}/http.log"
+                                 filePattern="${baseDir}/$${date:yyyy-MM}/sql-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false">
+            <RegexFilter regex=".*PollingServerListUpdater.*" onMatch="DENY" onMismatch="ACCEPT"/>
+            <!-- 需要记录的级别 -->
+            <!-- <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" /> -->
+            <PatternLayout pattern="%d{DEFAULT}:[%4p] [%t] [%logger.%M][%L] - %msg%n"/>
+            <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}" maxDepth="2">
+                    <IfFileName glob="*/sql-*.log.gz"/>
+                    <IfLastModified age="3d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <asyncRoot level="INFO" includeLocation="true"> <!-- 全局配置 -->
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="mainFile"/>
+        </asyncRoot>
+        <!-- pattern layout actually uses location, so we need to include it -->
+        <AsyncLogger name="com.wengzhoujun" level="DEBUG" includeLocation="true">
+            <AppenderRef ref="mainFile"/>
+        </AsyncLogger>
+        <AsyncLogger name="druid.sql.Statement" level="INFO" includeLocation="true">
+            <!--<AppenderRef ref="Console" />-->
+            <AppenderRef ref="sqlFile"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apache.http.wire" level="INFO" includeLocation="true" additivity="true">
+            <AppenderRef ref="httpFile"/>
+        </AsyncLogger>
+    </Loggers>
+</Configuration>
