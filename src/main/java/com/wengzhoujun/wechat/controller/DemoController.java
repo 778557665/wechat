@@ -38,7 +38,7 @@ public class DemoController {
     }
 
     @RequestMapping(value = "/checkToken", method = {RequestMethod.POST, RequestMethod.GET})
-    public ReturnMessageVo checkToken(HttpServletRequest request, @RequestBody Message message) {
+    public String checkToken(HttpServletRequest request, @RequestBody Message message) {
         logger.info("[checkToken]{-----开始校验签名-----}");
         logger.info("[checkToken]{message:" + message.toString() + "}");
         String signature = request.getParameter("signature");
@@ -61,11 +61,11 @@ public class DemoController {
             returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, Long.parseLong(timeStr), "text", "hello wechat");
             logger.info("[checkToken]{returnMessageVo:" + returnMessageVo.toString() + "}");
             logger.info("[checkToken]{-----签名校验通过-----}");
-            return returnMessageVo;
+            return returnMessageVo.toString();
         } else {
             logger.info("[checkToken]{-----校验签名失败-----}");
         }
-        return returnMessageVo;
+        return returnMessageVo.toString();
     }
 
     /**

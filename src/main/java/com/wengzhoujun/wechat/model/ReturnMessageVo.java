@@ -26,11 +26,11 @@ public class ReturnMessageVo {
     }
 
     public ReturnMessageVo(String toUserName, String fromUserName, Long createTime, String msgType, String content) {
-        this.toUserName = "<![CDATA[" + toUserName + "]]";
-        this.fromUserName = "<![CDATA[" + fromUserName + "]]";
+        this.toUserName = toUserName;
+        this.fromUserName = fromUserName;
         this.createTime = createTime;
-        this.msgType = "<![CDATA[" + msgType + "]]";
-        this.content = "<![CDATA[" + content + "]]";
+        this.msgType = msgType;
+        this.content = content;
     }
 
     public String getToUserName() {
@@ -38,7 +38,7 @@ public class ReturnMessageVo {
     }
 
     public void setToUserName(String toUserName) {
-        this.toUserName = "<![CDATA[" + toUserName + "]]";
+        this.toUserName = toUserName;
     }
 
     public String getFromUserName() {
@@ -46,7 +46,7 @@ public class ReturnMessageVo {
     }
 
     public void setFromUserName(String fromUserName) {
-        this.fromUserName = "<![CDATA[" + fromUserName + "]]";
+        this.fromUserName = fromUserName;
     }
 
     public Long getCreateTime() {
@@ -62,7 +62,7 @@ public class ReturnMessageVo {
     }
 
     public void setMsgType(String msgType) {
-        this.msgType = "<![CDATA[" + msgType + "]]";
+        this.msgType = msgType;
     }
 
     public String getContent() {
@@ -70,17 +70,19 @@ public class ReturnMessageVo {
     }
 
     public void setContent(String content) {
-        this.content = "<![CDATA[" + content + "]]";
+        this.content = content;
     }
 
     @Override
     public String toString() {
-        return "ReturnMessageVo{" +
-                "toUserName='" + toUserName + '\'' +
-                ", fromUserName='" + fromUserName + '\'' +
-                ", createTime=" + createTime +
-                ", msgType='" + msgType + '\'' +
-                ", content='" + content + '\'' +
-                '}';
+        StringBuffer str = new StringBuffer();
+        str.append("<xml>");
+        str.append("<ToUserName><![CDATA[" + toUserName + "]]></ToUserName>");
+        str.append("<FromUserName><![CDATA[" + fromUserName + "]]></FromUserName>");
+        str.append("<CreateTime>" + createTime + "</CreateTime>");
+        str.append("<MsgType><![CDATA[" + msgType + "]]></MsgType>");
+        str.append("<Content><![CDATA[" + content + "]]></Content>");
+        str.append("</xml>");
+        return str.toString();
     }
 }
