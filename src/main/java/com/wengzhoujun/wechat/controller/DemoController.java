@@ -25,7 +25,7 @@ public class DemoController {
 
     private final String TOKEN = "TCZH";
 
-    private final String AesKey = "ixJh7tIRyVd1H8bSkgBzytnLMuI7brjbfTNpxLBjdWE";
+    private final String AesKey = "AesKey";
 
     @Autowired
     private TokenService tokenService;
