@@ -56,7 +56,10 @@ public class DemoController {
         if (!"".equals(signature) && !"".equals(mySignature) && signature.equals(mySignature)) {
             String myUserName = message.getToUserName();
             String userOpenId = message.getFromUserName();
-            returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, System.currentTimeMillis(), "text", "hello wechat");
+            Long time = System.currentTimeMillis();
+            String timeStr = time.toString().substring(0, 10);
+            returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, Long.parseLong(timeStr), "text", "hello wechat");
+            logger.info("[checkToken]{returnMessageVo:" + returnMessageVo.toString() + "}");
             logger.info("[checkToken]{-----签名校验通过-----}");
             return returnMessageVo;
         } else {
