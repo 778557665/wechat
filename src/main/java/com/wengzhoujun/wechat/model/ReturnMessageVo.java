@@ -26,11 +26,11 @@ public class ReturnMessageVo {
     }
 
     public ReturnMessageVo(String toUserName, String fromUserName, Long createTime, String msgType, String content) {
-        this.toUserName = "<![CDATA[" + toUserName + "]";
-        this.fromUserName = "<![CDATA[" + fromUserName + "]";
+        this.toUserName = "<![CDATA[" + toUserName + "]]";
+        this.fromUserName = "<![CDATA[" + fromUserName + "]]";
         this.createTime = createTime;
-        this.msgType = "<![CDATA[" + msgType + "]";
-        this.content = "<![CDATA[" + content + "]";
+        this.msgType = "<![CDATA[" + msgType + "]]";
+        this.content = "<![CDATA[" + content + "]]";
     }
 
     public String getToUserName() {
@@ -38,7 +38,7 @@ public class ReturnMessageVo {
     }
 
     public void setToUserName(String toUserName) {
-        this.toUserName = "<![CDATA[" + toUserName + "]";
+        this.toUserName = "<![CDATA[" + toUserName + "]]";
     }
 
     public String getFromUserName() {
@@ -46,7 +46,7 @@ public class ReturnMessageVo {
     }
 
     public void setFromUserName(String fromUserName) {
-        this.fromUserName = "<![CDATA[" + fromUserName + "]";
+        this.fromUserName = "<![CDATA[" + fromUserName + "]]";
     }
 
     public Long getCreateTime() {
@@ -62,7 +62,7 @@ public class ReturnMessageVo {
     }
 
     public void setMsgType(String msgType) {
-        this.msgType = "<![CDATA[" + msgType + "]";
+        this.msgType = "<![CDATA[" + msgType + "]]";
     }
 
     public String getContent() {
@@ -70,7 +70,7 @@ public class ReturnMessageVo {
     }
 
     public void setContent(String content) {
-        this.content = "<![CDATA[" + content + "]";
+        this.content = "<![CDATA[" + content + "]]";
     }
 
     @Override
