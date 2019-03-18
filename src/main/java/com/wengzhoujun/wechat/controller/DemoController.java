@@ -37,8 +37,8 @@ public class DemoController {
         }
     }
 
-    @RequestMapping(value = "/checkToken", method = {RequestMethod.POST, RequestMethod.GET}, produces = MediaType.APPLICATION_XML_VALUE)
-    public String checkToken(HttpServletRequest request, @RequestBody Message message) {
+    @RequestMapping(value = "/checkToken", method = {RequestMethod.POST, RequestMethod.GET})
+    public ReturnMessageVo checkToken(HttpServletRequest request, @RequestBody Message message) {
         logger.info("[checkToken]{-----开始校验签名-----}");
         logger.info("[checkToken]{message:" + message.toString() + "}");
         String signature = request.getParameter("signature");
@@ -52,15 +52,17 @@ public class DemoController {
         String mySignature = shal(sortStr);
         logger.info("mySignature:" + mySignature);
         // 校验微信服务器传递过来的签名 和  加密后的字符串是否一致, 若一致则签名通过
+        ReturnMessageVo returnMessageVo = new ReturnMessageVo();
         if (!"".equals(signature) && !"".equals(mySignature) && signature.equals(mySignature)) {
+            String myUserName = message.getToUserName();
             String userOpenId = message.getFromUserName();
-            ReturnMessageVo returnMessageVo = new ReturnMessageVo();
+            returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, System.currentTimeMillis(), "text", "hello wechat");
             logger.info("[checkToken]{-----签名校验通过-----}");
-            return echostr;
+            return returnMessageVo;
         } else {
             logger.info("[checkToken]{-----校验签名失败-----}");
         }
-        return "fail";
+        return returnMessageVo;
     }
 
     /**

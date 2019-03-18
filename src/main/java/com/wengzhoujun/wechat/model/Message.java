@@ -1,32 +1,32 @@
 package com.wengzhoujun.wechat.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 
-@XmlRootElement(name="IpWhite")
-//@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"toUserName","fromUserName","createTime","msgType","content","msgId"})
-@XmlAccessorOrder(XmlAccessOrder.ALPHABETICAL)
+@JacksonXmlRootElement(localName = "xml")
 public class Message implements Serializable{
 
     private static final long serialVersionUID = 7786111704039948377L;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "ToUserName")
     private String ToUserName;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "FromUserName")
     private String FromUserName;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "CreateTime")
     private Long CreateTime;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "MsgType")
     private String MsgType;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "Content")
     private String Content;
 
-    @XmlAttribute
+    @JacksonXmlProperty(localName = "MsgId")
     private Long MsgId;
 
     public String getToUserName() {
