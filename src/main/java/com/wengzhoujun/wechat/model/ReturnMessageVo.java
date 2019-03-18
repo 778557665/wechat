@@ -8,68 +8,68 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class ReturnMessageVo {
 
     @JacksonXmlProperty(localName = "ToUserName")
-    private String ToUserName;
+    private String toUserName;
 
     @JacksonXmlProperty(localName = "FromUserName")
-    private String FromUserName;
+    private String fromUserName;
 
     @JacksonXmlProperty(localName = "CreateTime")
-    private Long CreateTime;
+    private Long createTime;
 
     @JacksonXmlProperty(localName = "MsgType")
-    private String MsgType;
+    private String msgType;
 
     @JacksonXmlProperty(localName = "Content")
-    private String Content;
+    private String content;
 
     public ReturnMessageVo() {
     }
 
     public ReturnMessageVo(String toUserName, String fromUserName, Long createTime, String msgType, String content) {
-        ToUserName = toUserName;
-        FromUserName = fromUserName;
-        CreateTime = createTime;
-        MsgType = msgType;
-        Content = content;
+        this.toUserName = toUserName;
+        this.fromUserName = fromUserName;
+        this.createTime = createTime;
+        this.msgType = msgType;
+        this.content = content;
     }
 
     public String getToUserName() {
-        return ToUserName;
+        return toUserName;
     }
 
     public void setToUserName(String toUserName) {
-        ToUserName = toUserName;
+        this.toUserName = toUserName;
     }
 
     public String getFromUserName() {
-        return FromUserName;
+        return fromUserName;
     }
 
     public void setFromUserName(String fromUserName) {
-        FromUserName = fromUserName;
+        this.fromUserName = fromUserName;
     }
 
     public Long getCreateTime() {
-        return CreateTime;
+        return createTime;
     }
 
     public void setCreateTime(Long createTime) {
-        CreateTime = createTime;
+        this.createTime = createTime;
     }
 
     public String getMsgType() {
-        return MsgType;
+        return msgType;
     }
 
     public void setMsgType(String msgType) {
-        MsgType = msgType;
+        this.msgType = msgType;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 }
