@@ -26,11 +26,11 @@ public class HttpUtil {
         return httpresponse.getStatusLine().getStatusCode() == 200;
     }
 
-    public static String HttpGet(Map<String, String> personMap, String url) throws Exception {
+    public static String HttpGet(Map<String, Object> personMap, String url) throws Exception {
         StringBuilder urlBuilder = new StringBuilder(url);
         String equal = "=";
         String and = "&";
-        for (Map.Entry<String, String> entry : personMap.entrySet()) {
+        for (Map.Entry<String, Object> entry : personMap.entrySet()) {
             urlBuilder.append(entry.getKey()).append(equal).append(entry.getValue()).append(and);
         }
         url = urlBuilder.deleteCharAt(urlBuilder.lastIndexOf(and)).toString();

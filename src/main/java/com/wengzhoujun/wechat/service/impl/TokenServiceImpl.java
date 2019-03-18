@@ -35,7 +35,7 @@ public class TokenServiceImpl implements TokenService {
             return token;
         }
         String url = "https://api.weixin.qq.com/cgi-bin/token?";
-        Map<String, String> param = new HashMap<>(4);
+        Map<String, Object> param = new HashMap<>(4);
         param.put("grant_type", GRANT_TYPE);
         param.put("appid", APPID);
         param.put("secret", SECRET);

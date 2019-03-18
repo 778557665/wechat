@@ -1,18 +1,21 @@
 package com.wengzhoujun.wechat.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wengzhoujun.wechat.model.Message;
 import com.wengzhoujun.wechat.model.ReturnMessageVo;
 import com.wengzhoujun.wechat.service.TokenService;
+import com.wengzhoujun.wechat.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/wechat")
@@ -56,9 +59,17 @@ public class DemoController {
         if (!"".equals(signature) && !"".equals(mySignature) && signature.equals(mySignature)) {
             String myUserName = message.getToUserName();
             String userOpenId = message.getFromUserName();
+            String content = message.getContent();
             Long time = System.currentTimeMillis();
             String timeStr = time.toString().substring(0, 10);
-            returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, Long.parseLong(timeStr), "text", "hello wechat");
+            String replyString = "请说人话";
+            try {
+                replyString = smartRobotAutoReply(content);
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.info("[checkToken]{-----出错了-----}");
+            }
+            returnMessageVo = new ReturnMessageVo(userOpenId, myUserName, Long.parseLong(timeStr), "text", replyString);
             logger.info("[checkToken]{returnMessageVo:" + returnMessageVo.toString() + "}");
             logger.info("[checkToken]{-----签名校验通过-----}");
             return returnMessageVo.toString();
@@ -66,6 +77,22 @@ public class DemoController {
             logger.info("[checkToken]{-----校验签名失败-----}");
         }
         return returnMessageVo.toString();
+    }
+
+    private String smartRobotAutoReply(String content) throws Exception {
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("key", "free");
+        map.put("appid", 0);
+        map.put("msg", content);
+        String response = HttpUtil.HttpGet(map, "http://api.qingyunke.com/api.php?");
+        if(null != response){
+            JSONObject responseJson = JSONObject.parseObject(response);
+            String replyString = responseJson.getString("content");
+            if(null != replyString){
+                return replyString;
+            }
+        }
+        return "我一下子反应不过来了，呜呜";
     }
 
     /**
