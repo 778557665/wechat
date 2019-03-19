@@ -40,6 +40,16 @@ public class DemoController {
         }
     }
 
+    @GetMapping("test")
+    public String test() {
+        try {
+            return "成了！";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "fail";
+        }
+    }
+
     @RequestMapping(value = "/checkToken", method = {RequestMethod.POST, RequestMethod.GET})
     public String checkToken(HttpServletRequest request, @RequestBody Message message) {
         logger.info("[checkToken]{-----开始校验签名-----}");
