@@ -16,9 +16,9 @@ public class TokenServiceImpl implements TokenService {
 
     private final String GRANT_TYPE = "client_credential";
 
-    private final String APPID = "appid";
+    private final String APPID = "wxe05a666920824122";
 
-    private final String SECRET = "secret";
+    private final String SECRET = "d251fe07d4bc399c7d98ead885ffb46e";
 
     private ValueOperations<String, String> wechatTokenConfigOperations;
 
