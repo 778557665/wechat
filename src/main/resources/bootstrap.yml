@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    inetutils:
+      ignoredInterfaces:
+        - docker0
+        - veth.*
+        - VMware.*
+        - VPN.*
+    consul:
+      host: 47.106.237.248
+      discovery:
+        healthCheckInterval: 15s #服务中心健康检查间隔
+        preferIpAddress: true  #使用外部IP注册服务，默认使用的是主机名
+        health-check-critical-timeout: 5m #5分钟没有恢复服务的从服务注册中心移除
+        instanceId: ${spring.cloud.client.hostname}:${server.port}
+      config:
+        prefix: config
+        defaultContext: wechat
+        profileSeparator: ','
+        format: PROPERTIES
