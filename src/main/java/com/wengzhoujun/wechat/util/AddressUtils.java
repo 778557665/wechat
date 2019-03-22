@@ -14,7 +14,7 @@ public class AddressUtils {
     public static String getRealAddress(String ip){
         try {
             // City类可用于IPDB格式的IPv4免费库，IPv4与IPv6的每周高级版、每日标准版、每日高级版、每日专业版、每日旗舰版
-            City db = new City("E:\\ipiptest.ipdb");
+            City db = new City("/root/wechat/ipipfree.ipdb");
             // db.find(address, language) 返回索引数组
             logger.info(Arrays.toString(db.find(ip, "CN")));
             // db.findInfo(address, language) 返回 CityInfo 对象
@@ -24,5 +24,9 @@ public class AddressUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        getRealAddress("140.207.54.80");
     }
 }
