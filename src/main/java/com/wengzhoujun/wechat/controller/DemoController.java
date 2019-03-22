@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.wengzhoujun.wechat.model.Message;
 import com.wengzhoujun.wechat.model.ReturnMessageVo;
 import com.wengzhoujun.wechat.service.TokenService;
+import com.wengzhoujun.wechat.util.AddressUtils;
 import com.wengzhoujun.wechat.util.HttpUtil;
+import com.wengzhoujun.wechat.util.IpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,9 @@ public class DemoController {
     public String checkToken(HttpServletRequest request, @RequestBody Message message) {
         logger.info("[checkToken]{-----开始校验签名-----}");
         logger.info("[checkToken]{message:" + message.toString() + "}");
+        String ip = IpUtils.getRealIp(request);
+        logger.info("-----address-----:" + AddressUtils.getRealAddress(ip));
+        logger.info("[checkToken]{ip:" + ip + "}");
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
