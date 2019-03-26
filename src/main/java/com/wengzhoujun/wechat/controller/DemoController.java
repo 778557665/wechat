@@ -100,10 +100,10 @@ public class DemoController {
         map.put("appid", 0);
         map.put("msg", content);
         String response = HttpUtil.HttpGet(map, "http://api.qingyunke.com/api.php?");
-        if(null != response){
+        if (null != response) {
             JSONObject responseJson = JSONObject.parseObject(response);
             String replyString = responseJson.getString("content");
-            if(null != replyString){
+            if (null != replyString) {
                 return replyString;
             }
         }

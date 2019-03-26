@@ -10,8 +10,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 public class WechatApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WechatApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WechatApplication.class, args);
+    }
 
 }

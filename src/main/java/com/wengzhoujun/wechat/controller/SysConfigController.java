@@ -16,12 +16,12 @@ public class SysConfigController {
     private SysConfigService sysConfigService;
 
     @GetMapping(value = "/getAll")
-    public List<SysConfig> getAllConfig(){
+    public List<SysConfig> getAllConfig() {
         return sysConfigService.findAll();
     }
 
     @PostMapping("/save")
-    public String save(SysConfig sysConfig){
+    public String save(SysConfig sysConfig) {
         sysConfig.setCreateTime(new Date());
         sysConfigService.save(sysConfig);
         return "success";

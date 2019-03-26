@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 
 @JacksonXmlRootElement(localName = "xml")
-public class Message implements Serializable{
+public class Message implements Serializable {
 
     private static final long serialVersionUID = 7786111704039948377L;
 

@@ -34,7 +34,7 @@ public class TokenServiceImpl implements TokenService {
     public String getToken() throws Exception {
         String cacheKey = "WechatToken";
         String token = wechatTokenConfigOperations.get(cacheKey);
-        if(null != token){
+        if (null != token) {
             return token;
         }
         String url = "https://api.weixin.qq.com/cgi-bin/token?";
@@ -44,10 +44,10 @@ public class TokenServiceImpl implements TokenService {
         param.put("secret", SECRET);
         String response = HttpUtil.HttpGet(param, url);
         JSONObject jsonObject = JSONObject.parseObject(response);
-        if(null != jsonObject){
+        if (null != jsonObject) {
             token = jsonObject.getString("access_token");
             Long expires = jsonObject.getLong("expires_in");
-            if(null != token){
+            if (null != token) {
                 wechatTokenConfigOperations.set(cacheKey, token, expires, TimeUnit.SECONDS);
                 return token;
             }

@@ -48,7 +48,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    public StringRedisTemplate oneRedisTemplate(LettuceConnectionFactory lettuceConnectionFactory){
+    public StringRedisTemplate oneRedisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
         RedisStandaloneConfiguration standaloneConfiguration = lettuceConnectionFactory.getStandaloneConfiguration();
         LettuceClientConfiguration clientConfiguration = lettuceConnectionFactory.getClientConfiguration();
         RedisStandaloneConfiguration serverConfig = new RedisStandaloneConfiguration(standaloneConfiguration.getHostName(), standaloneConfiguration.getPort());
@@ -67,7 +67,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    public CacheManager cacheManger(RedisConnectionFactory connectionFactory){
+    public CacheManager cacheManger(RedisConnectionFactory connectionFactory) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
         // 设置缓存的默认过期时间，也是使用Duration设置
         config = config.entryTtl(Duration.ofDays(20)).disableCachingNullValues();
