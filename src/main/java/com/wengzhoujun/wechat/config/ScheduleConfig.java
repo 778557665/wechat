@@ -8,7 +8,6 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * Created by qinhe on 2017/11/22.
@@ -24,6 +23,6 @@ public class ScheduleConfig implements SchedulingConfigurer {
 
     @Bean(destroyMethod = "shutdown")
     public Executor taskExecutor() {
-        return Executors.newScheduledThreadPool(3);
+        return Executors.newScheduledThreadPool(1);
     }
 }
