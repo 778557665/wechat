@@ -1,13 +1,10 @@
 package com.wengzhoujun.wechat.scheduler;
 
 import com.wengzhoujun.wechat.entity.MailInfo;
-import com.wengzhoujun.wechat.util.EmailUtil;
 import com.wengzhoujun.wechat.util.MailUtil;
 import com.wengzhoujun.wechat.util.WeatherUtil;
-import org.apache.commons.mail.EmailAttachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +13,6 @@ import java.util.Calendar;
 import java.util.List;
 
 @Component
-@Lazy(false)
 public class WeatherScheduler {
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherScheduler.class);
