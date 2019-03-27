@@ -24,15 +24,15 @@ public class WeatherUtil {
                         String notice = today.getString("notice");
                         String high = today.getString("high");
                         String low = today.getString("low");
-                        stringBuilder.append("今天").append(today.getString("type")).append(",").append(notice)
+                        stringBuilder.append("今天").append(today.getString("type")).append("，").append(notice)
                                 .append(max).append(high.replace("高温 ", ""))
                                 .append(min).append(low.replace("低温 ", ""));
                         String br = "<br>";
                         stringBuilder.append(br).append("下面老追为您准备详细的天气信息哦~").append(br).
-                                append("今天pm2.5指数:").append(today.getString("aqi")).append(br)
-                                .append("空气质量:").append(data.getString("quality")).append(br)
-                                .append("风向:").append(today.getString("fx")).append(br)
-                                .append("风速:").append(today.getString("fl")).append(br);
+                                append("今天pm2.5指数：").append(today.getString("aqi")).append(br)
+                                .append("空气质量：").append(data.getString("quality")).append(br)
+                                .append("风向：").append(today.getString("fx")).append(br)
+                                .append("风速：").append(today.getString("fl")).append(br);
                     }
                 }
             }
