@@ -10,6 +10,7 @@ import com.wengzhoujun.wechat.util.IpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,7 +100,7 @@ public class DemoController {
         map.put("key", "free");
         map.put("appid", 0);
         map.put("msg", content);
-        String response = HttpUtil.HttpGet(map, "http://api.qingyunke.com/api.php?");
+        String response = HttpUtil.httpGet(map, "http://api.qingyunke.com/api.php?");
         if (null != response) {
             JSONObject responseJson = JSONObject.parseObject(response);
             String replyString = responseJson.getString("content");

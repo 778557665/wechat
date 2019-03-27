@@ -42,7 +42,7 @@ public class TokenServiceImpl implements TokenService {
         param.put("grant_type", GRANT_TYPE);
         param.put("appid", APPID);
         param.put("secret", SECRET);
-        String response = HttpUtil.HttpGet(param, url);
+        String response = HttpUtil.httpGet(param, url);
         JSONObject jsonObject = JSONObject.parseObject(response);
         if (null != jsonObject) {
             token = jsonObject.getString("access_token");
