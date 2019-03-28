@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableCaching
 @EnableDiscoveryClient
-@EnableScheduling
 @SpringBootApplication
 public class WechatApplication {
 
