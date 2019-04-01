@@ -21,7 +21,7 @@ public class WeatherScheduler {
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherScheduler.class);
 
-    @Scheduled(cron = "0 0 8 * * ? ")
+//    @Scheduled(cron = "0 0 8 * * ? ")
     public void sendEmail() {
         try {
             MailInfo mailInfo = new MailInfo();

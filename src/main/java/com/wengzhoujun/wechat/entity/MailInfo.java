@@ -33,8 +33,9 @@ public class MailInfo {
     }
 
     public void addCcAddress(List<String> ccAddress) {
-        if (null != ccAddress && ccAddress.size() > 0)
+        if (null != ccAddress && ccAddress.size() > 0){
             this.ccAddress.addAll(ccAddress);
+        }
     }
 
     public List<EmailAttachment> getAttachments() {
